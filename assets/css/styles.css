@@ -1,0 +1,775 @@
+:root{
+  --bg:#0a0a0f;
+  --bg-soft:#1a1a2e;
+  --text:#ffffff;
+  --muted:#8b8b9c;
+  --card:#16213e;
+  --border:#2d3748;
+  --primary:#4f46e5;
+  --success:#10b981;
+  --danger:#ef4444;
+  --warning:#f59e0b;
+  --gradient:linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --shadow:0 10px 25px rgba(0,0,0,0.3);
+  --shadow-lg:0 20px 40px rgba(0,0,0,0.4);
+}
+
+body.theme-dark{
+  background:var(--bg);
+  color:var(--text);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Enhanced Cards */
+.card{
+  background:var(--card); 
+  border:1px solid var(--border);
+  border-radius:16px;
+  box-shadow:var(--shadow);
+  backdrop-filter:blur(10px);
+  transition:all 0.3s ease;
+}
+
+/* Full width container optimization */
+.container-fluid {
+  width: 100% !important;
+  max-width: 100% !important;
+  padding: 24px;
+  margin: 0 !important;
+}
+
+/* Ensure proper column sizing */
+.col-lg-3 {
+  flex: 0 0 auto;
+  width: 25%;
+}
+
+.col-lg-9 {
+  flex: 0 0 auto;
+  width: 75%;
+}
+
+.card:hover{
+  transform:translateY(-2px);
+  box-shadow:var(--shadow-lg);
+}
+
+/* Sidebar Styling */
+.sidebar{
+  background:linear-gradient(180deg, var(--card) 0%, var(--bg-soft) 100%);
+  border-radius:20px;
+  border:1px solid var(--border);
+  height: 95vh;
+  min-height: 600px;
+}
+
+/* Main content area */
+.col-lg-9 .card {
+  height: 95vh;
+  min-height: 600px;
+}
+
+/* Mobile height adjustments */
+@media (max-width: 768px) {
+  .sidebar {
+    height: auto;
+    min-height: auto;
+  }
+  
+  .col-lg-9 .card {
+    height: auto;
+    min-height: auto;
+  }
+}
+
+.sidebar .btn{
+  border:2px solid transparent;
+  color:var(--text);
+  border-radius:12px;
+  padding:12px 16px;
+  font-weight:500;
+  transition:all 0.3s ease;
+  background:transparent;
+}
+
+.sidebar .btn:hover{
+  background:var(--primary);
+  border-color:var(--primary);
+  transform:translateX(4px);
+  box-shadow:0 4px 12px rgba(79, 70, 229, 0.3);
+}
+
+/* Navigation Tabs */
+.nav-tabs{
+  border:none;
+  background:var(--bg-soft);
+  border-radius:12px;
+  padding:4px;
+  margin-bottom:24px;
+}
+
+.nav-tabs .nav-link{
+  color:var(--muted);
+  border:none;
+  border-radius:8px;
+  padding:10px 20px;
+  font-weight:500;
+  transition:all 0.3s ease;
+  margin:0 2px;
+}
+
+.nav-tabs .nav-link:hover{
+  color:var(--text);
+  background:rgba(255,255,255,0.1);
+}
+
+.nav-tabs .nav-link.active{
+  color:var(--text);
+  background:var(--gradient);
+  box-shadow:0 4px 12px rgba(79, 70, 229, 0.3);
+}
+
+/* Floating Action Button */
+.fab{
+  position:fixed;
+  right:32px;
+  bottom:32px;
+  width:64px; 
+  height:64px;
+  display:flex; 
+  align-items:center; 
+  justify-content:center;
+  background:var(--gradient);
+  border:none;
+  border-radius:50%;
+  box-shadow:var(--shadow-lg);
+  font-size:24px;
+  font-weight:bold;
+  color:white;
+  transition:all 0.3s ease;
+  z-index:1000;
+}
+
+.fab:hover{
+  transform:scale(1.1) rotate(90deg);
+  box-shadow:0 25px 50px rgba(79, 70, 229, 0.4);
+}
+
+/* Task Cards */
+.task-card{
+  border:1px solid var(--border); 
+  background:var(--bg-soft);
+  border-radius:16px;
+  padding:20px;
+  margin-bottom:16px;
+  transition:all 0.3s ease;
+  position:relative;
+  overflow:hidden;
+}
+
+.task-card::before{
+  content:'';
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  height:4px;
+  background:var(--gradient);
+  opacity:0;
+  transition:opacity 0.3s ease;
+}
+
+.task-card:hover::before{
+  opacity:1;
+}
+
+.task-card:hover{
+  transform:translateY(-4px);
+  box-shadow:var(--shadow-lg);
+}
+
+.task-title{
+  font-weight:700;
+  font-size:1.1rem;
+  margin-bottom:8px;
+  color:var(--text);
+}
+
+.task-meta{
+  font-size:0.9rem; 
+  color:var(--muted);
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+/* Task card specific button alignment */
+.task-card .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+.task-card .d-flex {
+  align-items: center;
+}
+
+.task-card .d-flex.gap-2 {
+  align-items: center;
+}
+
+/* Badges */
+.badge{
+  padding:6px 12px;
+  border-radius:20px;
+  font-weight:600;
+  font-size:0.8rem;
+  text-transform:uppercase;
+  letter-spacing:0.5px;
+}
+
+.badge-complete{
+  background:linear-gradient(135deg, var(--success), #059669);
+  color:white;
+  box-shadow:0 2px 8px rgba(16, 185, 129, 0.3);
+}
+
+.badge-pending{
+  background:linear-gradient(135deg, var(--danger), #dc2626);
+  color:white;
+  box-shadow:0 2px 8px rgba(239, 68, 68, 0.3);
+}
+
+/* Buttons */
+.btn{
+  border-radius:12px;
+  font-weight:600;
+  padding:10px 20px;
+  transition:all 0.3s ease;
+  border:2px solid transparent;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  min-height:44px;
+}
+
+.btn-primary{
+  background:var(--gradient);
+  border-color:var(--primary);
+  box-shadow:0 4px 12px rgba(79, 70, 229, 0.3);
+  color:white !important;
+}
+
+.btn-primary:hover{
+  transform:translateY(-2px);
+  box-shadow:0 8px 20px rgba(79, 70, 229, 0.4);
+  color:white !important;
+}
+
+.btn-success{
+  background:linear-gradient(135deg, var(--success), #059669);
+  border-color:var(--success);
+  box-shadow:0 4px 12px rgba(16, 185, 129, 0.3);
+  color:white !important;
+}
+
+.btn-outline-success{
+  border-color:var(--success);
+  color:var(--success) !important;
+}
+
+.btn-outline-success:hover{
+  background:var(--success);
+  color:white !important;
+  transform:translateY(-2px);
+}
+
+.btn-sm{
+  padding:6px 12px;
+  min-height:32px;
+  font-size:0.875rem;
+}
+
+/* Form Controls */
+.form-control{
+  border-radius:12px;
+  border:2px solid var(--border);
+  background:var(--bg-soft);
+  color:var(--text) !important;
+  padding:12px 16px;
+  transition:all 0.3s ease;
+}
+
+.form-control:focus{
+  border-color:var(--primary);
+  box-shadow:0 0 0 3px rgba(79, 70, 229, 0.1);
+  background:var(--card);
+  color:var(--text) !important;
+}
+
+.form-control::placeholder{
+  color:var(--muted) !important;
+}
+
+/* Chat Messages */
+.chat-message{
+  border-radius:18px;
+  padding:12px 18px;
+  margin-bottom:12px;
+  max-width:70%;
+  word-wrap:break-word;
+  position:relative;
+}
+
+.chat-message.sent{
+  background:var(--gradient);
+  color:white;
+  margin-left:auto;
+  border-bottom-right-radius:6px;
+}
+
+.chat-message.received{
+  background:var(--bg-soft);
+  color:var(--text);
+  border:1px solid var(--border);
+  border-bottom-left-radius:6px;
+}
+
+/* Settings Toggle */
+.form-check-input{
+  width:48px;
+  height:24px;
+  border-radius:12px;
+  border:2px solid var(--border);
+  background:var(--bg-soft);
+  cursor:pointer;
+  transition:all 0.3s ease;
+}
+
+.form-check-input:checked{
+  background:var(--gradient);
+  border-color:var(--primary);
+}
+
+/* Modal Styling */
+.modal-content{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:20px;
+  box-shadow:var(--shadow-lg);
+}
+
+.modal-header{
+  border-bottom:1px solid var(--border);
+  border-radius:20px 20px 0 0;
+}
+
+.modal-footer{
+  border-top:1px solid var(--border);
+  border-radius:0 0 20px 20px;
+}
+
+/* Light theme */
+body.theme-light{
+  --bg:#f8fafc;
+  --bg-soft:#ffffff;
+  --text:#1e293b;
+  --muted:#64748b;
+  --card:#ffffff;
+  --border:#e2e8f0;
+  background:var(--bg); 
+  color:var(--text);
+}
+
+body.theme-light .card{
+  box-shadow:0 4px 6px rgba(0,0,0,0.05);
+}
+
+body.theme-light .task-card{
+  background:var(--bg-soft);
+  border:1px solid var(--border);
+}
+
+/* Global Color Overrides */
+* {
+  color: inherit;
+}
+
+body, body * {
+  color: var(--text);
+}
+
+/* Ensure all text elements use theme colors */
+h1, h2, h3, h4, h5, h6, p, span, div, label, input, textarea, select {
+  color: var(--text) !important;
+}
+
+/* Override Bootstrap default colors */
+.text-muted {
+  color: var(--muted) !important;
+}
+
+.text-white {
+  color: white !important;
+}
+
+.bg-success {
+  background: var(--success) !important;
+}
+
+.bg-danger {
+  background: var(--danger) !important;
+}
+
+/* Modal and Overlay Colors */
+.modal-content {
+  color: var(--text) !important;
+}
+
+.modal-title, .modal-body, .modal-footer {
+  color: var(--text) !important;
+}
+
+.btn-close {
+  filter: invert(1);
+}
+
+/* Responsive Design */
+@media (min-width: 1400px) {
+  .container-fluid {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 24px 32px;
+  }
+  
+  .sidebar .btn {
+    padding: 14px 20px;
+    font-size: 1rem;
+  }
+  
+  .task-card {
+    padding: 24px;
+  }
+  
+  .btn {
+    padding: 12px 24px;
+    min-height: 48px;
+  }
+}
+
+@media (min-width: 1200px) and (max-width: 1399px) {
+  .container-fluid {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 24px;
+  }
+  
+  .sidebar .btn {
+    padding: 12px 16px;
+    font-size: 0.95rem;
+  }
+  
+  .task-card {
+    padding: 20px;
+  }
+  
+  .btn {
+    padding: 10px 20px;
+    min-height: 44px;
+  }
+}
+
+@media (max-width: 1199px) and (min-width: 992px) {
+  .container-fluid {
+    padding: 20px;
+  }
+  
+  .sidebar .btn {
+    padding: 10px 12px;
+    font-size: 0.9rem;
+  }
+  
+  .task-card {
+    padding: 18px;
+  }
+}
+
+@media (max-width: 991px) and (min-width: 769px) {
+  .container-fluid {
+    padding: 16px;
+  }
+  
+  .row.g-3 {
+    --bs-gutter-x: 1rem;
+    --bs-gutter-y: 1rem;
+  }
+  
+  .sidebar .btn {
+    padding: 8px 10px;
+    font-size: 0.85rem;
+  }
+  
+  .nav-tabs .nav-link {
+    padding: 8px 12px;
+    font-size: 0.85rem;
+  }
+  
+  .task-card {
+    padding: 16px;
+  }
+  
+  .btn {
+    padding: 8px 16px;
+    min-height: 40px;
+  }
+}
+
+/* Mobile Sidebar - Horizontal Layout */
+@media (max-width: 768px) {
+  .container-fluid {
+    padding: 12px;
+  }
+  
+  /* Force single column layout on mobile */
+  .row.g-3 {
+    flex-direction: column !important;
+  }
+  
+  /* Make sidebar full width and horizontal */
+  .col-lg-3 {
+    width: 100% !important;
+    flex: 0 0 100% !important;
+  }
+  
+  .col-lg-9 {
+    width: 100% !important;
+    flex: 0 0 100% !important;
+  }
+  
+  .sidebar {
+    order: -1;
+    margin-bottom: 16px;
+    height: auto !important;
+    min-height: auto !important;
+  }
+  
+  .sidebar .card-body {
+    padding: 12px;
+  }
+  
+  /* Force horizontal navigation */
+  .sidebar .nav {
+    flex-direction: row !important;
+    overflow-x: auto;
+    gap: 8px;
+    padding-bottom: 8px;
+    display: flex !important;
+  }
+  
+  .sidebar .btn {
+    white-space: nowrap;
+    padding: 8px 12px;
+    font-size: 0.8rem;
+    min-width: auto;
+    flex-shrink: 0;
+  }
+  
+  .sidebar .btn i {
+    margin-right: 4px !important;
+  }
+  
+  /* Keep class name visible on mobile */
+  .sidebar .text-muted.small {
+    font-size: 0.75rem;
+  }
+  
+  .sidebar #class-name {
+    font-size: 0.9rem;
+  }
+  
+  /* Main content full width */
+  .col-lg-9 .card {
+    height: auto !important;
+    min-height: auto !important;
+  }
+  
+  .fab {
+    right: 16px;
+    bottom: 16px;
+    width: 56px;
+    height: 56px;
+    font-size: 20px;
+  }
+  
+  .task-card {
+    padding: 14px;
+    margin-bottom: 12px;
+  }
+  
+  .nav-tabs .nav-link {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+    margin: 0 1px;
+  }
+  
+  .btn {
+    padding: 6px 12px;
+    min-height: 36px;
+    font-size: 0.85rem;
+  }
+  
+  .btn-sm {
+    padding: 4px 8px;
+    min-height: 28px;
+    font-size: 0.8rem;
+  }
+  
+  .form-control {
+    padding: 10px 12px;
+    font-size: 0.9rem;
+  }
+  
+  .card {
+    border-radius: 12px;
+  }
+  
+  .task-title {
+    font-size: 1rem;
+  }
+  
+  .task-meta {
+    font-size: 0.8rem;
+  }
+  
+  .badge {
+    padding: 4px 8px;
+    font-size: 0.75rem;
+  }
+  
+  .chat-message {
+    padding: 10px 14px;
+    font-size: 0.9rem;
+  }
+}
+
+
+
+@media (max-width: 576px) {
+  .container-fluid {
+    padding: 8px;
+  }
+  
+  .row.g-3 {
+    --bs-gutter-x: 0.75rem;
+    --bs-gutter-y: 0.75rem;
+  }
+  
+  .fab {
+    right: 12px;
+    bottom: 12px;
+    width: 52px;
+    height: 52px;
+    font-size: 18px;
+  }
+  
+  .task-card {
+    padding: 12px;
+    margin-bottom: 10px;
+  }
+  
+  .nav-tabs {
+    padding: 2px;
+  }
+  
+  .nav-tabs .nav-link {
+    padding: 4px 8px;
+    font-size: 0.75rem;
+    margin: 0;
+  }
+  
+  .btn {
+    padding: 5px 10px;
+    min-height: 32px;
+    font-size: 0.8rem;
+  }
+  
+  .btn-sm {
+    padding: 3px 6px;
+    min-height: 24px;
+    font-size: 0.75rem;
+  }
+  
+  .form-control {
+    padding: 8px 10px;
+    font-size: 0.85rem;
+  }
+  
+  .card {
+    border-radius: 10px;
+  }
+  
+  .sidebar {
+    border-radius: 12px;
+  }
+  
+  .task-title {
+    font-size: 0.95rem;
+  }
+  
+  .task-meta {
+    font-size: 0.75rem;
+  }
+  
+  .badge {
+    padding: 3px 6px;
+    font-size: 0.7rem;
+  }
+  
+  .chat-message {
+    padding: 8px 12px;
+    font-size: 0.85rem;
+    max-width: 85%;
+  }
+  
+  .sidebar .btn {
+    padding: 6px 8px;
+    font-size: 0.8rem;
+  }
+  
+  .h5 {
+    font-size: 1.1rem;
+  }
+  
+  .h6 {
+    font-size: 1rem;
+  }
+}
+
+/* Landscape orientation adjustments */
+@media (max-height: 600px) and (orientation: landscape) {
+  .container-fluid {
+    padding: 8px;
+  }
+  
+  .fab {
+    bottom: 8px;
+    right: 8px;
+    width: 48px;
+    height: 48px;
+  }
+  
+  .task-card {
+    padding: 10px;
+    margin-bottom: 8px;
+  }
+  
+  .nav-tabs .nav-link {
+    padding: 4px 8px;
+  }
+}
+
+

@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Manage Class - Faculty</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: #0f172a;
+      color: #fff;
+      min-height: 100vh;
+    }
+    .sidebar {
+      background: #1e293b;
+      border-radius: 15px;
+      padding: 20px;
+      height: 100%;
+    }
+    .sidebar .nav-link {
+      color: #fff;
+      padding: 12px;
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+    .sidebar .nav-link:hover, .sidebar .nav-link.active {
+      background: linear-gradient(90deg, #6366f1, #9333ea);
+      color: #fff;
+    }
+    .tabs {
+      background: #1e293b;
+      border-radius: 12px;
+      padding: 10px;
+    }
+    .tabs .nav-link {
+      color: #fff;
+      border-radius: 8px;
+      margin: 0 5px;
+    }
+    .tabs .nav-link.active {
+      background: #6366f1;
+    }
+    .content-area {
+      background: #1e293b;
+      border-radius: 15px;
+      padding: 20px;
+      min-height: 80vh;
+    }
+    .class-card {
+      background: #0f172a;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .class-card h6 {
+      margin-bottom: 15px;
+    }
+    .btn-custom {
+      background: linear-gradient(90deg, #6366f1, #9333ea);
+      border: none;
+      color: #fff;
+      border-radius: 8px;
+      padding: 6px 14px;
+    }
+    .btn-custom:hover {
+      opacity: 0.9;
+    }
+    .popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #1e293b;
+      padding: 20px;
+      border-radius: 12px;
+      z-index: 1000;
+      width: 400px;
+      color: white;
+    }
+    .popup.active {
+      display: block;
+    }
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 999;
+    }
+    .overlay.active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="container-fluid py-3">
+    <div class="row">
+      <!-- Sidebar -->
+      <div class="col-12 col-md-3 mb-3">
+        <div class="sidebar h-100">
+          <h5>Class</h5>
+          <a href="faculty-index.html" class="nav-link">Upload</a>
+          <a href="faculty-manage-class.html" class="nav-link active">Manage Class</a>
+          <a href="faculty-messages.html" class="nav-link">Message</a>
+          <a href="faculty-settings.html" class="nav-link">Setting</a>
+        </div>
+      </div>
+
+      <!-- Main content -->
+      <div class="col-12 col-md-9">
+        
+
+        <div class="content-area row">
+          <!-- Example Class Card -->
+          <div class="col-md-4">
+            <div class="class-card">
+              <h6>Web Technology</h6>
+              <button class="btn btn-danger btn-sm mb-2" onclick="deleteClass(this)">Delete</button>
+              <button class="btn btn-custom btn-sm" onclick="openPopup('Web Technology',65,'5 Docs')">Setting</button>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="class-card">
+              <h6>Python</h6>
+              <button class="btn btn-danger btn-sm mb-2" onclick="deleteClass(this)">Delete</button>
+              <button class="btn btn-custom btn-sm" onclick="openPopup('Python',40,'10 Docs')">Setting</button>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="class-card">
+              <h6>C++</h6>
+              <button class="btn btn-danger btn-sm mb-2" onclick="deleteClass(this)">Delete</button>
+              <button class="btn btn-custom btn-sm" onclick="openPopup('C++',30,'8 Docs')">Setting</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Popup -->
+  <div class="overlay" id="overlay" onclick="closePopup()"></div>
+  <div class="popup" id="popup">
+    <h6 id="popupTitle">Class Name</h6>
+    <p><strong>Total:</strong> <span id="popupTotal">0</span></p>
+    <p><strong>Uploaded:</strong> <span id="popupUploaded">0 Docs</span></p>
+    <label>Change Name</label>
+    <input type="text" class="form-control mb-2" id="popupInput" placeholder="Write Here">
+    <button class="btn-custom" onclick="saveName()">Save</button>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    function deleteClass(btn) {
+      btn.closest(".class-card").style.display = "none";
+    }
+    function openPopup(name,total,uploaded) {
+      document.getElementById("popupTitle").innerText = name;
+      document.getElementById("popupTotal").innerText = total;
+      document.getElementById("popupUploaded").innerText = uploaded;
+      document.getElementById("overlay").classList.add("active");
+      document.getElementById("popup").classList.add("active");
+    }
+    function closePopup() {
+      document.getElementById("overlay").classList.remove("active");
+      document.getElementById("popup").classList.remove("active");
+    }
+    function saveName() {
+      alert("Name changed to: " + document.getElementById("popupInput").value);
+      closePopup();
+    }
+  </script>
+</body>
+</html>
